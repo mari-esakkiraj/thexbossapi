@@ -1,0 +1,1004 @@
+2022-01-12 06:50:13 [::1][-][-][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property 'id' of non-object in C:\xampp\htdocs\thexbossapi\controllers\SiteController.php:278
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(278): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 278, Array)
+#1 [internal function]: app\controllers\SiteController->actionProductview()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#8 {main}
+2022-01-12 06:50:13 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '11'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '61588'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641966613.2028
+    'REQUEST_TIME' => 1641966613
+]
+2022-01-12 06:50:40 [::1][-][-][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property 'id' of non-object in C:\xampp\htdocs\thexbossapi\controllers\SiteController.php:278
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(278): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 278, Array)
+#1 [internal function]: app\controllers\SiteController->actionProductview()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#8 {main}
+2022-01-12 06:50:40 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '11'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '50239'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641966640.3551
+    'REQUEST_TIME' => 1641966640
+]
+2022-01-12 07:08:16 [::1][-][-][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property 'id' of non-object in C:\xampp\htdocs\thexbossapi\controllers\SiteController.php:278
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(278): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 278, Array)
+#1 [internal function]: app\controllers\SiteController->actionProductview()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#8 {main}
+2022-01-12 07:08:16 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '11'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '58358'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641967696.039
+    'REQUEST_TIME' => 1641967696
+]
+2022-01-12 07:08:39 [::1][-][-][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property 'id' of non-object in C:\xampp\htdocs\thexbossapi\controllers\SiteController.php:278
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(278): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 278, Array)
+#1 [internal function]: app\controllers\SiteController->actionProductview()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#8 {main}
+2022-01-12 07:08:39 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '8'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '56842'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641967719.5324
+    'REQUEST_TIME' => 1641967719
+]
+2022-01-12 08:39:08 [::1][-][-][error][yii\db\Exception] Error: Object of class stdClass could not be converted to string in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:327
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(327): PDOStatement->bindValue(':qp0', Object(stdClass), 2)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(268): yii\db\Command->bindPendingParams()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#7 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#8 [internal function]: app\controllers\SiteController->actionProductview()
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#12 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#13 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: Object of class stdClass could not be converted to string
+Failed to prepare SQL: SELECT * FROM `product` WHERE (`id`=:qp0) AND (`status`=:qp1) in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:275
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#5 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#6 [internal function]: app\controllers\SiteController->actionProductview()
+#7 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#13 {main}
+Additional Information:
+
+2022-01-12 08:39:08 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '15'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '58943'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641973148.4029
+    'REQUEST_TIME' => 1641973148
+]
+2022-01-12 08:54:17 [::1][-][-][error][yii\db\Exception] Error: Object of class stdClass could not be converted to string in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:327
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(327): PDOStatement->bindValue(':qp0', Object(stdClass), 2)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(268): yii\db\Command->bindPendingParams()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#7 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#8 [internal function]: app\controllers\SiteController->actionProductview()
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#12 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#13 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: Object of class stdClass could not be converted to string
+Failed to prepare SQL: SELECT * FROM `product` WHERE (`id`=:qp0) AND (`status`=:qp1) in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:275
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#5 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#6 [internal function]: app\controllers\SiteController->actionProductview()
+#7 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#13 {main}
+Additional Information:
+
+2022-01-12 08:54:16 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '15'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '62725'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641974056.8731
+    'REQUEST_TIME' => 1641974056
+]
+2022-01-12 08:54:27 [::1][-][-][error][yii\db\Exception] Error: Object of class stdClass could not be converted to string in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:327
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(327): PDOStatement->bindValue(':qp0', Object(stdClass), 2)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(268): yii\db\Command->bindPendingParams()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#7 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#8 [internal function]: app\controllers\SiteController->actionProductview()
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#12 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#13 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: Object of class stdClass could not be converted to string
+Failed to prepare SQL: SELECT * FROM `product` WHERE (`id`=:qp0) AND (`status`=:qp1) in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:275
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#5 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#6 [internal function]: app\controllers\SiteController->actionProductview()
+#7 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#13 {main}
+Additional Information:
+
+2022-01-12 08:54:27 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '15'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '62735'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641974067.1768
+    'REQUEST_TIME' => 1641974067
+]
+2022-01-12 08:54:41 [::1][-][-][error][yii\db\Exception] Error: Object of class stdClass could not be converted to string in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:327
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(327): PDOStatement->bindValue(':qp0', Object(stdClass), 2)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(268): yii\db\Command->bindPendingParams()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#7 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#8 [internal function]: app\controllers\SiteController->actionProductview()
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#12 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#13 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: Object of class stdClass could not be converted to string
+Failed to prepare SQL: SELECT * FROM `product` WHERE (`id`=:qp0) AND (`status`=:qp1) in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:275
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#5 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#6 [internal function]: app\controllers\SiteController->actionProductview()
+#7 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#13 {main}
+Additional Information:
+
+2022-01-12 08:54:40 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '15'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '62743'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641974080.8862
+    'REQUEST_TIME' => 1641974080
+]
+2022-01-12 08:55:03 [::1][-][-][error][yii\db\Exception] Error: Object of class stdClass could not be converted to string in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:327
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(327): PDOStatement->bindValue(':qp0', Object(stdClass), 2)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(268): yii\db\Command->bindPendingParams()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#7 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#8 [internal function]: app\controllers\SiteController->actionProductview()
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#12 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#13 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: Object of class stdClass could not be converted to string
+Failed to prepare SQL: SELECT * FROM `product` WHERE (`id`=:qp0) AND (`status`=:qp1) in C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php:275
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(1163): yii\db\Command->prepare(true)
+#1 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Command.php(424): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\Query.php(287): yii\db\Command->queryOne()
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\ActiveQuery.php(304): yii\db\Query->one(NULL)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\db\BaseActiveRecord.php(112): yii\db\ActiveQuery->one()
+#5 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(279): yii\db\BaseActiveRecord::findOne(Array)
+#6 [internal function]: app\controllers\SiteController->actionProductview()
+#7 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#10 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#11 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#13 {main}
+Additional Information:
+
+2022-01-12 08:55:02 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '15'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '62745'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641974102.8841
+    'REQUEST_TIME' => 1641974102
+]
+2022-01-12 08:56:24 [::1][-][-][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property 'id' of non-object in C:\xampp\htdocs\thexbossapi\controllers\SiteController.php:278
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(278): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 278, Array)
+#1 [internal function]: app\controllers\SiteController->actionProductview()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#8 {main}
+2022-01-12 08:56:24 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '8'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '62842'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641974184.374
+    'REQUEST_TIME' => 1641974184
+]
+2022-01-12 08:56:35 [::1][-][-][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property 'id' of non-object in C:\xampp\htdocs\thexbossapi\controllers\SiteController.php:278
+Stack trace:
+#0 C:\xampp\htdocs\thexbossapi\controllers\SiteController.php(278): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 278, Array)
+#1 [internal function]: app\controllers\SiteController->actionProductview()
+#2 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Controller.php(181): yii\base\InlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Module.php(534): yii\base\Controller->runAction('productview', Array)
+#5 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\web\Application.php(104): yii\base\Module->runAction('site/productvie...', Array)
+#6 C:\xampp\htdocs\thexbossapi\vendor\yiisoft\yii2\base\Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\xampp\htdocs\thexbossapi\web\index.php(12): yii\base\Application->run()
+#8 {main}
+2022-01-12 08:56:35 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '8'
+    'HTTP_SEC_CH_UA' => '\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"97\", \"Chromium\";v=\"97\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:3000'
+    'HTTP_SEC_FETCH_SITE' => 'same-site'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost:3000/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.4.26'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/thexbossapi/web/index.php'
+    'REMOTE_PORT' => '62886'
+    'REDIRECT_URL' => '/thexbossapi/web/site/productview'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/thexbossapi/web/site/productview'
+    'SCRIPT_NAME' => '/thexbossapi/web/index.php'
+    'PHP_SELF' => '/thexbossapi/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1641974195.0307
+    'REQUEST_TIME' => 1641974195
+]
