@@ -34,7 +34,30 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+        ],
+        'mail' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@backend/mail',
+            'useFileTransport' => false,//set this property to false to send mails to real email addresses
+            //comment the following array to send mail using php's mail function
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.hostinger.com',
+                'username' => 'info@healthbeautybank.com',
+                'password' => 'Password@2022',
+                'port' => '587',
+                'encryption' => 'tls',
+                ],
+        ],
+        'transport' => [
+            'class' => 'Swift_SmtpTransport',
+            'plugins' => [
+                [
+                    'class' => 'Swift_Plugins_ThrottlerPlugin',
+                    'constructArgs' => [20],
+                ],
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

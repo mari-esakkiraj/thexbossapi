@@ -18,6 +18,7 @@ use Yii;
  * @property integer $emp_id
  * @property string $themecolour
  * @property string $status
+ * @property string $mobile
  * @property string $access_token
  * @property string $createddate
  * @property string $updateddate
@@ -41,7 +42,7 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['password', 'image', 'path', 'status'], 'string'],
+            [['password', 'status', 'mobile'], 'safe'],
             [[ 'createdby', 'updatedby'], 'integer'],
             [['createddate', 'updateddate','role'], 'safe'],
             [['fullname', 'email'], 'string', 'max' => 100],
@@ -59,11 +60,8 @@ class Users extends \yii\db\ActiveRecord
             'fullname' => 'Fullname',
             'email' => 'Email',
             'password' => 'Password',
-            'image' => 'Image',
-            'path' => 'Path',
-            'company_id' => 'Company ID',
-            'emp_id' => 'Emp ID',
-            'themecolour' => 'Themecolour',
+            'role' => 'role',
+            'mobile' => 'mobile',
             'status' => 'Status',
             'access_token' => 'Access Token',
             'createddate' => 'Createddate',
@@ -95,5 +93,40 @@ class Users extends \yii\db\ActiveRecord
             self::$userRole[$id] = key($userRoleId);
         }
         return self::$userRole[$id];
+    }
+
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    public function add()
+    {
+        //$this->status = 1;
+        $this->createddate = date('Y-m-d H:i:s');
+        $this->updateddate = date('Y-m-d H:i:s');
+        $this->createdby = 1;
+        $this->updatedby = 1;
+        $this->status = 1;
+        $this->role = "User";
+        $this->password = Yii::$app->security->generatePasswordHash($this->password);
+        $this->access_token = Yii::$app->security->generateRandomString();
+        $email = $this->email;
+        $replyEmail ="info@healthbeautybank.com";;
+        if($this->save()){
+            $subject = "Signup Form";
+            $body = "Thank you for your Signup for healthbeautybank.com";
+            Yii::$app->mailer->compose()
+                    ->setTo($email)
+                    ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                    ->setReplyTo([$replyEmail => $replyEmail])
+                    ->setSubject($subject)
+                    ->setTextBody($body)
+                    ->send();
+            return true;
+        }else{
+            print_r($this->getErrors());
+            exit;
+        }
     }
 }

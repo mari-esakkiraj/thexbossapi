@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string|null $title
  * @property int $category_id
+ * @property int $sub_category_id
  * @property string|null $filename
  * @property string $content
  * @property string $content_new
@@ -34,7 +35,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['category_id', 'content'], 'required'],
-            [['category_id','status'], 'integer'],
+            [['category_id','status', 'sub_category_id'], 'integer'],
             [['content'], 'string'],
             [['createddate', 'updateddate','price','content_new'], 'safe'],
             [['title', 'filename'], 'string', 'max' => 255],

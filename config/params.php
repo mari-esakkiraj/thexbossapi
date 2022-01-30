@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'adminEmail' => 'info@healthbeautybank.com',
+    'senderEmail' => 'info@healthbeautybank.com',
+    'senderName' => 'Healthbeautybank Admin',
     //'adminURL' => 'https://healthbeautybank.com/thexbossapi/web/',
     'adminURL' => 'http://localhost/thexbossapi/web/',
 ];

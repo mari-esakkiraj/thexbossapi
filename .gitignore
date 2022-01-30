@@ -31,3 +31,12 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+
+#vagrant folder
+runtime
+runtime/
+runtime/*
+runtime/debug
+runtime/debug/*
+web/
+web/*

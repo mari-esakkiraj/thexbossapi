@@ -5,23 +5,23 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "sub_category".
  *
  * @property int $id
+ * @property int $category_id
  * @property string|null $title
  * @property string|null $status
- * @property string|null $type
  * @property string|null $createddate
  * @property string|null $updateddate
  */
-class Category extends \yii\db\ActiveRecord
+class SubCategory extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'category';
+        return 'sub_category';
     }
 
     /**
@@ -30,8 +30,9 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
-            [['createddate', 'updateddate','status','type'], 'safe'],
+            [['category_id'], 'required'],
+            [['category_id'], 'integer'],
+            [['createddate', 'updateddate', 'status'], 'safe'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -43,9 +44,9 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'category_id' => 'Category ID',
             'title' => 'Title',
             'status' => 'Status',
-            'type' => 'Type',
             'createddate' => 'Createddate',
             'updateddate' => 'Updateddate',
         ];
@@ -63,4 +64,10 @@ class Category extends \yii\db\ActiveRecord
             exit;
         }
     }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
 }

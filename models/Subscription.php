@@ -31,9 +31,9 @@ class Subscription extends \yii\db\ActiveRecord
         return [
             [['id'], 'integer'],
             [['email'], 'required'],
-            [['createddate', 'updateddate'], 'safe'],
+            [['createddate', 'updateddate', 'status'], 'safe'],
             [['email'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 3],
+            //[['status'], 'string', 'max' => 3],
             [['id'], 'unique'],
         ];
     }
@@ -57,8 +57,21 @@ class Subscription extends \yii\db\ActiveRecord
         $this->status = 1;
         $this->createddate = date('Y-m-d H:i:s');
         $this->updateddate = date('Y-m-d H:i:s');
+        $email = $this->email;
+        $replyEmail ="info@healthbeautybank.com";
         if($this->save()){
+            $subject = "Subscription Form";
+            $body = "Thank you for your Subscription for healthbeautybank.com";
+            Yii::$app->mailer->compose()
+                    ->setTo($email)
+                    ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                    ->setReplyTo([$replyEmail => $replyEmail])
+                    ->setSubject($subject)
+                    ->setTextBody($body)
+                    ->send();
             return true;
+        }else{
+            var_dump($this->getErrors());exit;
         }
     }
 }

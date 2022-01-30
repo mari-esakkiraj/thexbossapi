@@ -14,7 +14,9 @@ use app\models\Subscription;
 use app\models\Product;
 use app\models\Post;
 use app\models\Category;
+use app\models\SubCategory;
 use app\models\ProductImages;
+use app\models\Users;
 use app\modules\api\models\ApiLoginForm;
 use yii\web\ForbiddenHttpException;
 use yii\web\UploadedFile;
@@ -197,16 +199,177 @@ class SiteController extends Controller
     public function actionCategory()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $list = Category::find()->orderBy([ 'id' => SORT_DESC])->all();
+        $list = Category::find()->andWhere(['status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
         $data = [];
         $i = 1;
         foreach ($list as $key => $value) {
+            $allPost = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+            $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+            if(count($allPost) > 0){
+                $fileNamePath =  Yii::$app->params['adminURL'].$allPost[0]['filename'];
+            }
             $data[$key]['id'] = $value['id'];
             $data[$key]['name'] = $value['title'];
             $data[$key]['href'] = "#";
-            $data[$key]['thumbnail'] = "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
-            $data[$key]['count'] = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->count();;
+            $data[$key]['thumbnail'] = $fileNamePath;
+            $data[$key]['count'] = count($allPost);
             $data[$key]['color'] = "indigo";
+            $data[$key]['type'] = $value['type'];
+            $i++;
+        }
+        return $data;
+    }
+
+    public function actionArticlecategory()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = Category::find()->andWhere([ 'type' => 'Article'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+        $data[0]['id'] = 0;
+        $data[0]['name'] = "All";
+        $data[0]['href'] = "#";
+        $data[0]['thumbnail'] = $fileNamePath;
+        $data[0]['count'] = 0;
+        $data[0]['color'] = "indigo";
+        $data[0]['type'] = "Article";
+        foreach ($list as $key => $value) {
+            $allPost = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+            if(count($allPost) > 0){
+                $fileNamePath =  Yii::$app->params['adminURL'].$allPost[0]['filename'];
+            }
+            $data[$i]['id'] = $value['id'];
+            $data[$i]['name'] = $value['title'];
+            $data[$i]['href'] = "#";
+            $data[$i]['thumbnail'] = $fileNamePath;
+            $data[$i]['count'] = count($allPost);
+            $data[$i]['color'] = "indigo";
+            $data[$i]['type'] = $value['type'];
+            $i++;
+        }
+        return $data;
+    }
+
+    public function actionProductcategory()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = Category::find()->andWhere([ 'type' => 'Product'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+        $data[0]['id'] = 0;
+        $data[0]['name'] = "All";
+        $data[0]['href'] = "#";
+        $data[0]['thumbnail'] = $fileNamePath;
+        $data[0]['count'] = 0;
+        $data[0]['color'] = "indigo";
+        $data[0]['type'] = "Article";
+        foreach ($list as $key => $value) {
+            $allPost = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+            if(count($allPost) > 0){
+                $fileNamePath =  Yii::$app->params['adminURL'].$allPost[0]['filename'];
+            }
+            $data[$i]['id'] = $value['id'];
+            $data[$i]['name'] = $value['title'];
+            $data[$i]['href'] = "#";
+            $data[$i]['thumbnail'] = $fileNamePath;
+            $data[$i]['count'] = count($allPost);
+            $data[$i]['color'] = "indigo";
+            $data[$i]['type'] = $value['type'];
+            $i++;
+        }
+        return $data;
+    }
+
+    public function actionArticlesubcategory()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $list = SubCategory::find()->joinWith(['category'])->andWhere(['type' => 'Article'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        $data = [];
+        $i = 1;
+        $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+        $data[0]['id'] = 0;
+        $data[0]['name'] = "All";
+        $data[0]['href'] = "#";
+        $data[0]['thumbnail'] = $fileNamePath;
+        $data[0]['count'] = 0;
+        $data[0]['color'] = "indigo";
+        $data[0]['type'] = "Article";
+        foreach ($list as $key => $value) {
+            $data[$i]['id'] = $value['id'];
+            $data[$i]['name'] = $value['title'];
+            $data[$i]['categoryName'] = $value->category->title;
+            $data[$i]['categoryId'] = $value['category_id'];;
+            $data[$i]['href'] = "#";
+            $data[$i]['thumbnail'] = "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+            $data[$i]['count'] = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->count();;
+            $data[$i]['color'] = "indigo";
+            $i++;
+        }
+        return $data;
+    }
+
+    public function actionProductsubcategory()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $list = SubCategory::find()->joinWith(['category'])->andWhere(['type' => 'Product'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        $data = [];
+        $i = 1;
+        $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+        $data[0]['id'] = 0;
+        $data[0]['name'] = "All";
+        $data[0]['href'] = "#";
+        $data[0]['thumbnail'] = $fileNamePath;
+        $data[0]['count'] = 0;
+        $data[0]['color'] = "indigo";
+        $data[0]['type'] = "Article";
+        foreach ($list as $key => $value) {
+            $data[$i]['id'] = $value['id'];
+            $data[$i]['name'] = $value['title'];
+            $data[$i]['categoryName'] = $value->category->title;
+            $data[$i]['categoryId'] = $value['category_id'];;
+            $data[$i]['href'] = "#";
+            $data[$i]['thumbnail'] = "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+            $data[$i]['count'] = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->count();;
+            $data[$i]['color'] = "indigo";
+            $i++;
+        }
+        return $data;
+    }
+
+    public function actionSearcproductcategory()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = Category::find()->andWhere([ 'type' => 'Product'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+        $data[0]['id'] = 0;
+        $data[0]['name'] = "All";
+        $data[0]['href'] = "#";
+        $data[0]['thumbnail'] = $fileNamePath;
+        $data[0]['count'] = 0;
+        $data[0]['color'] = "indigo";
+        $data[0]['type'] = "Product";
+        foreach ($list as $key => $value) {
+            $allPost = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+            if(count($allPost) > 0){
+                $fileNamePath =  Yii::$app->params['adminURL'].$allPost[0]['filename'];
+            }
+            $data[$i]['id'] = $value['id'];
+            $data[$i]['name'] = $value['title'];
+            $data[$i]['href'] = "#";
+            $data[$i]['thumbnail'] = $fileNamePath;
+            $data[$i]['count'] = count($allPost);
+            $data[$i]['color'] = "indigo";
+            $data[$i]['type'] = $value['type'];
             $i++;
         }
         return $data;
@@ -236,6 +399,8 @@ class SiteController extends Controller
             $data[$key]['like'] = ["count" => 0,"isLiked" => false];
             $data[$key]['authorId'] = 1;
             $data[$key]['categoryName'] = $value->category->title;
+            $data[$key]['category'] = $value['category_id'];
+            $data[$key]['subcategory'] = $value['sub_category_id'];
             $i++;
         }
         return $data;
@@ -244,7 +409,41 @@ class SiteController extends Controller
     public function actionArticle()
     { 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $list = Post::find()->joinWith(['category'])->orderBy([ 'id' => SORT_DESC, 'status' => '1'])->all();
+        $list = Post::find()->andWhere(['post.status' => 1])->joinWith(['category'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        if(count($list) > 0){
+            foreach ($list as $key => $value) {
+                // var_dump($value->category); exit;
+                $data[$key]['index'] = $i;
+                $data[$key]['id'] = $value['id'];
+                $data[$key]['title'] = $value['title'];
+                $data[$key]['desc'] = $value['content'];
+                $data[$key]['date'] = $value['createddate'];
+                $data[$key]['href'] = "#";
+                $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
+                $data[$key]['commentCount'] = 0;
+                $data[$key]['viewdCount'] = 0;
+                $data[$key]['readingTime'] = 0;
+                $data[$key]['postType'] = "standard";
+                $data[$key]['categoriesId'] = [$value['category_id']];
+                $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
+                $data[$key]['like'] = ["count" => 0,"isLiked" => false];
+                $data[$key]['authorId'] = 1;
+                $data[$key]['categoryName'] = $value->category->title;
+                $data[$key]['category'] = $value['category_id'];
+                $data[$key]['subcategory'] = $value['sub_category_id'];
+                $i++;
+            }
+        }
+        
+        return $data;
+    }
+
+    public function actionArticledash()
+    { 
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = Post::find()->joinWith(['category'])->orderBy([ 'id' => SORT_DESC])->all();
         $data = [];
         $i = 1;
         foreach ($list as $key => $value) {
@@ -265,6 +464,9 @@ class SiteController extends Controller
             $data[$key]['like'] = ["count" => 0,"isLiked" => false];
             $data[$key]['authorId'] = 1;
             $data[$key]['categoryName'] = $value->category->title;
+            $data[$key]['category'] = $value['category_id'];
+            $data[$key]['subcategory'] = $value['sub_category_id'];
+            $data[$key]['status'] = ( $value['status'] == 1) ? 'Active' : "Draft";
             $i++;
         }
         return $data;
@@ -332,7 +534,7 @@ class SiteController extends Controller
         $id = $params->id->id;
         
         //var_dump($id);exit;
-        $list = Post::findOne(['id' => $id, 'status'=>'1']);
+        $list = Post::findOne(['id' => $id]);
         $content = $list->content;
         $content = preg_replace('/<span[^>]+\>|<\/span>/i', '', $content);
         $content = preg_replace('/<div[^>]+\>|<\/div>/i', '', $content);
@@ -349,6 +551,8 @@ class SiteController extends Controller
         $data['readingTime'] = 0;
         $data['postType'] = "standard";
         $data['categoriesId'] = [$list->category_id];
+        $data['category'] = $list->category_id;
+        $data['subcategory'] = $list->sub_category_id;
         $data['bookmark'] = ["count" => 0,"isBookmarked" => false];
         $data['like'] = ["count" => 0,"isLiked" => false];
         $data['authorId'] = 1;
@@ -513,6 +717,200 @@ class SiteController extends Controller
                 'postList' => $this->actionProduct()
             ];
         }
+        return $result;
+    }
+
+    /**
+     * Displays contact page.
+     *
+     * @return Response|string
+     */
+    public function actionSubmitcontact()
+    {
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $attributes = (array)$params;
+        //var_dump($attributes);exit;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $email = "info@healthbeautybank.com";
+        $replyEmail = $attributes['email'];
+        $name = $attributes['name'];
+        $subject = "Contact Form";
+        $body = $attributes['desc'];
+        Yii::$app->mailer->compose()
+                ->setTo($email)
+                ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                ->setReplyTo([$replyEmail => $name])
+                ->setSubject($subject)
+                ->setTextBody($body)
+                ->send();
+        $user['status'] = 'success';
+        return $user;
+        
+    }
+
+
+    /**
+     * Displays contact page.
+     *
+     * @return Response|string
+     */
+    public function actionSignup()
+    {
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $model = new Users();
+        $model->attributes = (array)$params;
+        if ($model->add()) {
+        }
+        $user['status'] = 'success';
+        return $user;
+        
+    }
+
+    public function actionAddcategory()
+    { 
+        $model = new Category();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if ($model->add()) {
+            return [
+                'status' => 'success'
+            ];
+        } else {
+            return [
+                'status' => 'error'
+            ];
+        }
+    }
+
+    public function actionEditcategory()
+    { 
+        $model = new Category();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->db->createCommand("UPDATE category SET title=:title,type=:type WHERE id=:id")
+        ->bindValue(':id', $params->id)
+        ->bindValue(':title', $params->title)
+        ->bindValue(':type', $params->type)
+        ->execute();
+        return [
+            'status' => 'success'
+        ];
+    }
+
+    public function actionDeletecategory()
+    { 
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $id = $params->id;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        // $model = Category::find()->where(['id' => $id, 'status' => '1'])->one();
+        // $result = [
+        //     'status' => 'error',
+        //     'id' => $id
+        // ];
+        // if($model->delete()){
+        //     $result = [
+        //         'status' => 'success',
+        //         'categoryList' => $this->actionCategory()
+        //     ];
+        // }
+        // return $result;
+        Yii::$app->db->createCommand("UPDATE category SET status='0' WHERE id=:id")
+        ->bindValue(':id', $params->id)
+        ->execute();
+        $result = [
+            'status' => 'success',
+            'categoryList' => $this->actionCategory()
+        ];
+        return $result;
+    }
+
+    public function actionSubcategory()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = SubCategory::find()->joinWith(['category'])->andWhere(['sub_category.status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        foreach ($list as $key => $value) {
+            $data[$key]['id'] = $value['id'];
+            $data[$key]['name'] = $value['title'];
+            $data[$key]['categoryName'] = $value->category->title;
+            $data[$key]['categoryId'] = $value['category_id'];;
+            $data[$key]['href'] = "#";
+            $data[$key]['thumbnail'] = "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+            $data[$key]['count'] = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->count();;
+            $data[$key]['color'] = "indigo";
+            $i++;
+        }
+        return $data;
+    }
+
+    public function actionEditsubcategory()
+    { 
+        $model = new Category();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->db->createCommand("UPDATE sub_category SET title=:title,category_id=:category_id WHERE id=:id")
+        ->bindValue(':id', $params->id)
+        ->bindValue(':title', $params->title)
+        ->bindValue(':category_id', $params->category_id)
+        ->execute();
+        return [
+            'status' => 'success'
+        ];
+    }
+
+    public function actionAddsubcategory()
+    { 
+        $model = new SubCategory();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if ($model->add()) {
+            return [
+                'status' => 'success'
+            ];
+        } else {
+            return [
+                'status' => 'error'
+            ];
+        }
+    }
+
+    public function actionDeletesubcategory()
+    { 
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $id = $params->id;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $model = SubCategory::find()->where(['id' => $id, 'status' => '1'])->one();
+        $result = [
+            'status' => 'error',
+            'id' => $id
+        ];
+        // if($model->delete()){
+        //     $result = [
+        //         'status' => 'success',
+        //         'categoryList' => $this->actionArticle()
+        //     ];
+        // }
+        Yii::$app->db->createCommand("UPDATE sub_category SET status='0' WHERE id=:id")
+        ->bindValue(':id', $params->id)
+        ->execute();
+        return [
+            'status' => 'success',
+            'categoryList' => $this->actionSubcategory()
+        ];
         return $result;
     }
 }
