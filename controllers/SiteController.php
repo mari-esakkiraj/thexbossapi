@@ -16,6 +16,8 @@ use app\models\Post;
 use app\models\Category;
 use app\models\SubCategory;
 use app\models\ProductImages;
+use app\models\ProductWishlist;
+use app\models\ArticleWishlist;
 use app\models\Users;
 use app\modules\api\models\ApiLoginForm;
 use yii\web\ForbiddenHttpException;
@@ -46,6 +48,9 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::class,
+            ],
         ];
     }
     
@@ -66,13 +71,13 @@ class SiteController extends Controller
         ];
     }
     
-    public function beforeAction($action) { 
-        Yii::$app->controller->enableCsrfValidation = false; 
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: PUT, GET, POST");
-        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-        return true;
-    }
+    // public function beforeAction($action) { 
+    //     Yii::$app->controller->enableCsrfValidation = false; 
+    //     header("Access-Control-Allow-Origin: *");
+    //     header("Access-Control-Allow-Methods: PUT, GET, POST");
+    //     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    //     return true;
+    // }
 
     /**
      * Displays homepage.
@@ -191,6 +196,7 @@ class SiteController extends Controller
         foreach ($list as $key => $value) {
             $data[$key]['name'] = $i;
             $data[$key]['content'] = $value['email'];
+            $data[$key]['id'] = $value['id'];
             $i++;
         }
         return $data;
@@ -199,7 +205,14 @@ class SiteController extends Controller
     public function actionCategory()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
         $list = Category::find()->andWhere(['status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+        if(isset($params->type)){
+            $type = $params->type;
+            $list = Category::find()->andWhere(['status' => '1', 'type' => $type])->orderBy([ 'id' => SORT_DESC])->all();
+        }
+        
         $data = [];
         $i = 1;
         foreach ($list as $key => $value) {
@@ -440,6 +453,74 @@ class SiteController extends Controller
         return $data;
     }
 
+    public function actionArticlewishlist()
+    { 
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = Post::find()->andWhere(['post.status' => 1,'article_wishlist.status' => 1])->joinWith(['category','articlewish'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        if(count($list) > 0){
+            foreach ($list as $key => $value) {
+                // var_dump($value->category); exit;
+                $data[$key]['index'] = $i;
+                $data[$key]['id'] = $value['id'];
+                $data[$key]['title'] = $value['title'];
+                $data[$key]['desc'] = $value['content'];
+                $data[$key]['date'] = $value['createddate'];
+                $data[$key]['href'] = "#";
+                $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
+                $data[$key]['commentCount'] = 0;
+                $data[$key]['viewdCount'] = 0;
+                $data[$key]['readingTime'] = 0;
+                $data[$key]['postType'] = "standard";
+                $data[$key]['categoriesId'] = [$value['category_id']];
+                $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
+                $data[$key]['like'] = ["count" => 0,"isLiked" => false];
+                $data[$key]['authorId'] = 1;
+                $data[$key]['categoryName'] = $value->category->title;
+                $data[$key]['category'] = $value['category_id'];
+                $data[$key]['subcategory'] = $value['sub_category_id'];
+                $i++;
+            }
+        }
+        
+        return $data;
+    }
+
+    public function actionProductwishlist()
+    { 
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = Product::find()->andWhere(['product.status' => 1,'product_wishlist.status' => 1])->joinWith(['category','productwish'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        if(count($list) > 0){
+            foreach ($list as $key => $value) {
+                // var_dump($value->category); exit;
+                $data[$key]['index'] = $i;
+                $data[$key]['id'] = $value['id'];
+                $data[$key]['title'] = $value['title'];
+                $data[$key]['desc'] = $value['content'];
+                $data[$key]['date'] = $value['createddate'];
+                $data[$key]['href'] = "#";
+                $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
+                $data[$key]['commentCount'] = 0;
+                $data[$key]['viewdCount'] = 0;
+                $data[$key]['readingTime'] = 0;
+                $data[$key]['postType'] = "standard";
+                $data[$key]['categoriesId'] = [$value['category_id']];
+                $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
+                $data[$key]['like'] = ["count" => 0,"isLiked" => false];
+                $data[$key]['authorId'] = 1;
+                $data[$key]['categoryName'] = $value->category->title;
+                $data[$key]['category'] = $value['category_id'];
+                $data[$key]['subcategory'] = $value['sub_category_id'];
+                $i++;
+            }
+        }
+        
+        return $data;
+    }
+
     public function actionArticledash()
     { 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -478,7 +559,16 @@ class SiteController extends Controller
         $request = Yii::$app->request;
         $params = json_decode($request->getRawBody());
         $id = $params->id->id;
+        $userId = $params->userId;
         $list = Product::findOne(['id' => $id, 'status'=>'1']);
+        $productList = Product::find()->joinWith(['category'])->andWhere(['product.status' => '1'])->all();
+        $wishList = false;
+        if($userId !== ''){
+            $wish = ProductWishlist::find()->andWhere(['product_id' => $id, 'user_id' => $userId])->one();
+            if($wish){
+                $wishList = true;
+            }
+        }
         $content = $list->content;
         $contentNew = $list->content_new;
         $content = preg_replace('/<span[^>]+\>|<\/span>/i', '', $content);
@@ -504,6 +594,9 @@ class SiteController extends Controller
         $data['bookmark'] = ["count" => 0,"isBookmarked" => false];
         $data['like'] = ["count" => 0,"isLiked" => false];
         $data['authorId'] = 1;
+        $data['total'] = count($productList);
+        $data['productUrl'] = $list->product_url === NULL ? '' : $list->product_url;
+        $data['wishlist'] = $wishList;
         
         $imagesList = $list->images;
         $namewith = '';
@@ -604,12 +697,16 @@ class SiteController extends Controller
         $id = $request['id'];
         $title = $request['title'];
         $category_id = $request['category_id'];
+        $sub_category_id = $request['sub_category_id'];
+        $status = $request['status'];
         $content = $request['content'];
-        Yii::$app->db->createCommand("UPDATE post SET title=:title,category_id=:category_id,content=:content WHERE id=:id")
+        Yii::$app->db->createCommand("UPDATE post SET title=:title,category_id=:category_id,content=:content,status=:status,sub_category_id=:sub_category_id WHERE id=:id")
         ->bindValue(':id', $id)
         ->bindValue(':title', $title)
         ->bindValue(':category_id', $category_id)
         ->bindValue(':content', $content)
+        ->bindValue(':sub_category_id', $sub_category_id)
+        ->bindValue(':status', $status)
         ->execute();
         return [
             'status' => 'success'
@@ -685,7 +782,7 @@ class SiteController extends Controller
         $params = json_decode($request->getRawBody());
         $id = $params->id;
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $model = Post::find()->where(['id' => $id, 'status' => '1'])->one();
+        $model = Post::find()->where(['id' => $id])->one();
         $result = [
             'status' => 'error',
             'id' => $id
@@ -835,7 +932,10 @@ class SiteController extends Controller
     public function actionSubcategory()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $list = SubCategory::find()->joinWith(['category'])->andWhere(['sub_category.status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $type = $params->type;
+        $list = SubCategory::find()->joinWith(['category'])->andWhere(['sub_category.status' => '1', 'type' => $type])->orderBy([ 'id' => SORT_DESC])->all();
         $data = [];
         $i = 1;
         foreach ($list as $key => $value) {
@@ -912,5 +1012,62 @@ class SiteController extends Controller
             'categoryList' => $this->actionSubcategory()
         ];
         return $result;
+    }
+
+    public function actionDeletesubscription()
+    { 
+        $model = new Subscription();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $id = $params->id;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $model = Subscription::find()->where(['id' => $id])->one();
+        $result = [
+            'status' => 'error',
+            'id' => $id
+        ];
+        if($model->delete()){
+            $result = [
+                'status' => 'success',
+                'postList' => $this->actionSubscription()
+            ];
+        }
+        return $result;
+    }
+
+    public function actionAddproductwishlist()
+    { 
+        $model = new ProductWishlist();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if ($model->add()) {
+            return [
+                'status' => 'success'
+            ];
+        } else {
+            return [
+                'status' => 'error'
+            ];
+        }
+    }
+
+    public function actionAddarticlewishlist()
+    { 
+        $model = new ArticleWishlist();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if ($model->add()) {
+            return [
+                'status' => 'success'
+            ];
+        } else {
+            return [
+                'status' => 'error'
+            ];
+        }
     }
 }

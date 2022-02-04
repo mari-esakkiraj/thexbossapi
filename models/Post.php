@@ -63,8 +63,12 @@ class Post extends \yii\db\ActiveRecord
         //$this->status = 1;
         $this->createddate = date('Y-m-d H:i:s');
         $this->updateddate = date('Y-m-d H:i:s');
+        $status = $this->status;
         if($this->save()){
-            $this->sendSunscriptionMail();
+            //var_dump($status);exit;
+            if($status == '1'){
+                $this->sendSunscriptionMail();
+            }
             return true;
         }else{
             print_r($this->getErrors());
@@ -75,6 +79,11 @@ class Post extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    public function getArticlewish()
+    {
+        return $this->hasOne(ArticleWishlist::className(), ['article_id' => 'id']);
     }
 
     public function sendSunscriptionMail() {

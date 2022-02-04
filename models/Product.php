@@ -15,6 +15,7 @@ use Yii;
  * @property string $content
  * @property string $content_new
  * @property string|null $status
+ * @property string|null $product_url
  * @property string|null $createddate
  * @property string|null $updateddate
  */
@@ -37,7 +38,7 @@ class Product extends \yii\db\ActiveRecord
             [['category_id', 'content'], 'required'],
             [['category_id','status', 'sub_category_id'], 'integer'],
             [['content'], 'string'],
-            [['createddate', 'updateddate','price','content_new'], 'safe'],
+            [['createddate', 'updateddate','price','content_new','product_url'], 'safe'],
             [['title', 'filename'], 'string', 'max' => 255],
             //[['status'], 'string', 'max' => 3],
         ];
@@ -67,6 +68,7 @@ class Product extends \yii\db\ActiveRecord
         $this->createddate = date('Y-m-d H:i:s');
         $this->updateddate = date('Y-m-d H:i:s');
         if($this->save()){
+            $this->sendSunscriptionMail();
             return true;
         }else{
             print_r($this->getErrors());
@@ -81,5 +83,29 @@ class Product extends \yii\db\ActiveRecord
     public function getImages()
     {
         return $this->hasMany(ProductImages::className(), ['product_id' => 'id']);
+    }
+
+    public function getProductwish()
+    {
+        return $this->hasOne(ProductWishlist::className(), ['product_id' => 'id']);
+    }
+
+    public function sendSunscriptionMail() {
+
+        $list = Subscription::find()->andWhere(['status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+        foreach ($list as $key => $value) {
+            $email = $value['email'];
+            $replyEmail ="info@healthbeautybank.com";
+            $subject = "Healthbeautybank - New Product Added.";
+            $body = "New Product added healthbeautybank.com/product";
+
+            Yii::$app->mailer->compose()
+            ->setTo($email)
+            ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+            ->setReplyTo([$replyEmail => $replyEmail])
+            ->setSubject($subject)
+            ->setTextBody($body)
+            ->send();
+        }
     }
 }
