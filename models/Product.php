@@ -8,16 +8,32 @@ use Yii;
  * This is the model class for table "product".
  *
  * @property int $id
- * @property string|null $title
+ * @property string $title
+ * @property string $product_uuid
+ * @property int $title_active
  * @property int $category_id
- * @property int $sub_category_id
+ * @property int|null $sub_category_id
+ * @property string|null $desc
+ * @property int $desc_active
+ * @property string|null $aditional_info
+ * @property int $aditional_info_active
  * @property string|null $filename
- * @property string $content
- * @property string $content_new
- * @property string|null $status
- * @property string|null $product_url
+ * @property int|null $size_id
+ * @property int $size_active
+ * @property int|null $quantity
+ * @property int $quantity_active
+ * @property int $in_stock
+ * @property int|null $color_id
+ * @property int $color_active
+ * @property int|null $status
+ * @property string|null $discount
+ * @property int $discount_active
+ * @property string|null $url
  * @property string|null $createddate
  * @property string|null $updateddate
+ *
+ * @property ProductColor $color
+ * @property ProductSize $size
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -35,12 +51,13 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'content'], 'required'],
-            [['category_id','status', 'sub_category_id'], 'integer'],
-            [['content'], 'string'],
-            [['createddate', 'updateddate','price','content_new','product_url'], 'safe'],
-            [['title', 'filename'], 'string', 'max' => 255],
-            //[['status'], 'string', 'max' => 3],
+            [['title'], 'required'],
+            [['title_active', 'category_id', 'sub_category_id', 'desc_active', 'aditional_info_active', 'size_id', 'size_active', 'quantity', 'quantity_active', 'in_stock', 'color_id', 'color_active', 'status', 'discount_active'], 'integer'],
+            [['createddate', 'updateddate','product_uuid'], 'safe'],
+            [['title', 'filename', 'url'], 'string', 'max' => 255],
+            [['desc', 'aditional_info', 'discount'], 'string', 'max' => 1000],
+            [['color_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductColor::className(), 'targetAttribute' => ['color_id' => 'color_id']],
+            [['size_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductSize::className(), 'targetAttribute' => ['size_id' => 'size_id']],
         ];
     }
 
@@ -52,14 +69,48 @@ class Product extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'title_active' => 'Title Active',
             'category_id' => 'Category ID',
+            'sub_category_id' => 'Sub Category ID',
+            'desc' => 'Desc',
+            'desc_active' => 'Desc Active',
+            'aditional_info' => 'Aditional Info',
+            'aditional_info_active' => 'Aditional Info Active',
             'filename' => 'Filename',
-            'content' => 'Content',
-            'content_new' => 'Content',
+            'size_id' => 'Size ID',
+            'size_active' => 'Size Active',
+            'quantity' => 'Quantity',
+            'quantity_active' => 'Quantity Active',
+            'in_stock' => 'In Stock',
+            'color_id' => 'Color ID',
+            'color_active' => 'Color Active',
             'status' => 'Status',
+            'discount' => 'Discount',
+            'discount_active' => 'Discount Active',
+            'url' => 'Url',
             'createddate' => 'Createddate',
             'updateddate' => 'Updateddate',
         ];
+    }
+
+    /**
+     * Gets query for [[Color]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getColor()
+    {
+        return $this->hasOne(ProductColor::className(), ['color_id' => 'color_id']);
+    }
+
+    /**
+     * Gets query for [[Size]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSize()
+    {
+        return $this->hasOne(ProductSize::className(), ['size_id' => 'size_id']);
     }
 
     public function add()

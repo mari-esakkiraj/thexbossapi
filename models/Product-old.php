@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "post".
+ * This is the model class for table "product".
  *
  * @property int $id
  * @property string|null $title
@@ -13,19 +13,20 @@ use Yii;
  * @property int $sub_category_id
  * @property string|null $filename
  * @property string $content
+ * @property string $content_new
  * @property string|null $status
- * @property string|null $post_uuid
+ * @property string|null $product_url
  * @property string|null $createddate
  * @property string|null $updateddate
  */
-class Post extends \yii\db\ActiveRecord
+class Product extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'post';
+        return 'product';
     }
 
     /**
@@ -34,11 +35,12 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'content', 'sub_category_id'], 'required'],
-            [['category_id','status'], 'integer'],
+            [['category_id', 'content'], 'required'],
+            [['category_id','status', 'sub_category_id'], 'integer'],
             [['content'], 'string'],
-            [['createddate', 'updateddate','post_uuid'], 'safe'],
+            [['createddate', 'updateddate','price','content_new','product_url'], 'safe'],
             [['title', 'filename'], 'string', 'max' => 255],
+            //[['status'], 'string', 'max' => 3],
         ];
     }
 
@@ -53,6 +55,7 @@ class Post extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'filename' => 'Filename',
             'content' => 'Content',
+            'content_new' => 'Content',
             'status' => 'Status',
             'createddate' => 'Createddate',
             'updateddate' => 'Updateddate',
@@ -61,15 +64,11 @@ class Post extends \yii\db\ActiveRecord
 
     public function add()
     {
-        //$this->status = 1;
+        $this->status = 1;
         $this->createddate = date('Y-m-d H:i:s');
         $this->updateddate = date('Y-m-d H:i:s');
-        $status = $this->status;
         if($this->save()){
-            //var_dump($status);exit;
-            if($status == '1'){
-                $this->sendSunscriptionMail();
-            }
+            $this->sendSunscriptionMail();
             return true;
         }else{
             print_r($this->getErrors());
@@ -81,19 +80,24 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
-
-    public function getArticlewish()
+    public function getImages()
     {
-        return $this->hasOne(ArticleWishlist::className(), ['article_id' => 'id']);
+        return $this->hasMany(ProductImages::className(), ['product_id' => 'id']);
+    }
+
+    public function getProductwish()
+    {
+        return $this->hasOne(ProductWishlist::className(), ['product_id' => 'id']);
     }
 
     public function sendSunscriptionMail() {
+
         $list = Subscription::find()->andWhere(['status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
         foreach ($list as $key => $value) {
             $email = $value['email'];
             $replyEmail ="info@healthbeautybank.com";
-            $subject = "Healthbeautybank - New Post Added.";
-            $body = "New post added healthbeautybank.com/article";
+            $subject = "Healthbeautybank - New Product Added.";
+            $body = "New Product added healthbeautybank.com/product";
 
             Yii::$app->mailer->compose()
             ->setTo($email)

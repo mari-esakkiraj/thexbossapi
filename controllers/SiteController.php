@@ -399,9 +399,9 @@ class SiteController extends Controller
             $data[$key]['index'] = $i;
             $data[$key]['id'] = $value['id'];
             $data[$key]['title'] = $value['title'];
-            $data[$key]['desc'] = $value['content'];
+            $data[$key]['desc'] = $value['desc'];
             $data[$key]['date'] = $value['createddate'];
-            $data[$key]['href'] = "#";
+            $data[$key]['href'] = "productview/".$value['product_uuid'];
             $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
             $data[$key]['commentCount'] = 0;
             $data[$key]['viewdCount'] = 0;
@@ -433,7 +433,7 @@ class SiteController extends Controller
                 $data[$key]['title'] = $value['title'];
                 $data[$key]['desc'] = $value['content'];
                 $data[$key]['date'] = $value['createddate'];
-                $data[$key]['href'] = "#";
+                $data[$key]['href'] = "articleview/".$value['post_uuid'];
                 $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
                 $data[$key]['commentCount'] = 0;
                 $data[$key]['viewdCount'] = 0;
@@ -446,6 +446,7 @@ class SiteController extends Controller
                 $data[$key]['categoryName'] = $value->category->title;
                 $data[$key]['category'] = $value['category_id'];
                 $data[$key]['subcategory'] = $value['sub_category_id'];
+                $data[$key]['uniqueId'] = $value['post_uuid'];
                 $i++;
             }
         }
@@ -558,9 +559,9 @@ class SiteController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $request = Yii::$app->request;
         $params = json_decode($request->getRawBody());
-        $id = $params->id->id;
-        $userId = $params->userId;
-        $list = Product::findOne(['id' => $id, 'status'=>'1']);
+        $id = $params->uid;
+        $userId = isset($params->userId) ? $params->userId : '';
+        $list = Product::findOne(['product_uuid' => $id, 'status'=>'1']);
         $productList = Product::find()->joinWith(['category'])->andWhere(['product.status' => '1'])->all();
         $wishList = false;
         if($userId !== ''){
@@ -569,8 +570,8 @@ class SiteController extends Controller
                 $wishList = true;
             }
         }
-        $content = $list->content;
-        $contentNew = $list->content_new;
+        $content = $list->desc;
+        $contentNew = $list->aditional_info;
         $content = preg_replace('/<span[^>]+\>|<\/span>/i', '', $content);
         $content = preg_replace('/<div[^>]+\>|<\/div>/i', '', $content);
         $content = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content);
@@ -579,9 +580,20 @@ class SiteController extends Controller
         $contentNew = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $contentNew);
         $data['index'] = 1;
         $data['title'] = $list->title;
+        $data['titleActive'] = $list->title_active == '1' ? true : false;
+        $data['descActive'] = $list->desc_active == '1' ? true : false;
+        $data['descNewActive'] = $list->aditional_info_active == '1' ? true : false;
+        $data['sizeActive'] = $list->size_active == '1' ? true : false;
+        $data['quantityActive'] = $list->quantity_active == '1' ? true : false;
+        $data['colorActive'] = $list->color_active == '1' ? true : false;
+        $data['discountActive'] = $list->discount_active == '1' ? true : false;
+        $data['quantity'] = 1;
+        $data['desc'] = $content;
+        $data['desc'] = $content;
+        $data['desc'] = $content;
         $data['desc'] = $content;
         $data['descNew'] = $contentNew;
-        $data['price'] = $list->price;
+        $data['price'] = '100';
         $data['date'] = "May 20, 2021";
         $data['id'] = $list->id;
         $data['href'] = "#";
@@ -595,7 +607,7 @@ class SiteController extends Controller
         $data['like'] = ["count" => 0,"isLiked" => false];
         $data['authorId'] = 1;
         $data['total'] = count($productList);
-        $data['productUrl'] = $list->product_url === NULL ? '' : $list->product_url;
+        $data['productUrl'] = $list->url === NULL ? '' : $list->url;
         $data['wishlist'] = $wishList;
         
         $imagesList = $list->images;
@@ -624,10 +636,8 @@ class SiteController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $request = Yii::$app->request;
         $params = json_decode($request->getRawBody());
-        $id = $params->id->id;
-        
-        //var_dump($id);exit;
-        $list = Post::findOne(['id' => $id]);
+        $uid = $params->uid;
+        $list = Post::findOne(['post_uuid' => $uid]);
         $content = $list->content;
         $content = preg_replace('/<span[^>]+\>|<\/span>/i', '', $content);
         $content = preg_replace('/<div[^>]+\>|<\/div>/i', '', $content);
@@ -721,16 +731,18 @@ class SiteController extends Controller
         $target_dir = "postimages/";       
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $imagesList = [];
-        foreach($_FILES['image']['name'] as $i => $name){
-            $filename = $_FILES['image']['tmp_name'][$i];
-            $target_file = $target_dir . basename($_FILES['image']['name'][$i]);
-            $error = $_FILES['image']['error'][$i];
-            $size = $_FILES['image']['size'][$i];
-            $type = $_FILES['image']['type'][$i];
-            if($filename !== ''){
-                move_uploaded_file($filename, $target_file);
-                array_push($imagesList, $target_file);
-                $model->filename = $target_file;
+        if(isset($_FILES['image'])){
+            foreach($_FILES['image']['name'] as $i => $name){
+                $filename = $_FILES['image']['tmp_name'][$i];
+                $target_file = $target_dir . basename($_FILES['image']['name'][$i]);
+                $error = $_FILES['image']['error'][$i];
+                $size = $_FILES['image']['size'][$i];
+                $type = $_FILES['image']['type'][$i];
+                if($filename !== ''){
+                    move_uploaded_file($filename, $target_file);
+                    array_push($imagesList, $target_file);
+                    $model->filename = $target_file;
+                }
             }
         }
         if ($model->add()) {
