@@ -27,6 +27,7 @@ use Yii;
  * @property int $color_active
  * @property int|null $status
  * @property string|null $discount
+ * @property string|null $prize
  * @property int $discount_active
  * @property string|null $url
  * @property string|null $createddate
@@ -52,10 +53,10 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['title_active', 'category_id', 'sub_category_id', 'desc_active', 'aditional_info_active', 'size_id', 'size_active', 'quantity', 'quantity_active', 'in_stock', 'color_id', 'color_active', 'status', 'discount_active'], 'integer'],
-            [['createddate', 'updateddate','product_uuid'], 'safe'],
+            [['title_active', 'desc_active', 'aditional_info_active', 'size_active', 'quantity_active', 'in_stock', 'color_active', 'status', 'discount_active'], 'integer'],
+            [['createddate', 'updateddate','product_uuid','prize', 'quantity', 'size_id', 'color_id', 'category_id', 'sub_category_id'], 'safe'],
             [['title', 'filename', 'url'], 'string', 'max' => 255],
-            [['desc', 'aditional_info', 'discount'], 'string', 'max' => 1000],
+            [['desc', 'aditional_info', 'discount'], 'string'],
             [['color_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductColor::className(), 'targetAttribute' => ['color_id' => 'color_id']],
             [['size_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductSize::className(), 'targetAttribute' => ['size_id' => 'size_id']],
         ];
@@ -118,8 +119,10 @@ class Product extends \yii\db\ActiveRecord
         $this->status = 1;
         $this->createddate = date('Y-m-d H:i:s');
         $this->updateddate = date('Y-m-d H:i:s');
+        $uid = $this->product_uuid;
+        $title = $this->title;
         if($this->save()){
-            $this->sendSunscriptionMail();
+            $this->sendSunscriptionMail($uid,$title);
             return true;
         }else{
             print_r($this->getErrors());
@@ -133,7 +136,8 @@ class Product extends \yii\db\ActiveRecord
     }
     public function getImages()
     {
-        return $this->hasMany(ProductImages::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductImages::className(), ['product_id' => 'id'])->
+        orderBy(['id' => SORT_DESC]);
     }
 
     public function getProductwish()
@@ -141,15 +145,14 @@ class Product extends \yii\db\ActiveRecord
         return $this->hasOne(ProductWishlist::className(), ['product_id' => 'id']);
     }
 
-    public function sendSunscriptionMail() {
+    public function sendSunscriptionMail($uid,$title) {
 
         $list = Subscription::find()->andWhere(['status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
         foreach ($list as $key => $value) {
             $email = $value['email'];
             $replyEmail ="info@healthbeautybank.com";
             $subject = "Healthbeautybank - New Product Added.";
-            $body = "New Product added healthbeautybank.com/product";
-
+            $body = "New Product added healthbeautybank.com/productview/".$uid."/".$title;
             Yii::$app->mailer->compose()
             ->setTo($email)
             ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])

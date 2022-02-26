@@ -34,7 +34,7 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'content', 'sub_category_id'], 'required'],
+            [['category_id', 'content', 'sub_category_id'], 'safe'],
             [['category_id','status'], 'integer'],
             [['content'], 'string'],
             [['createddate', 'updateddate','post_uuid'], 'safe'],
@@ -65,10 +65,12 @@ class Post extends \yii\db\ActiveRecord
         $this->createddate = date('Y-m-d H:i:s');
         $this->updateddate = date('Y-m-d H:i:s');
         $status = $this->status;
+        $uid = $this->post_uuid;
+        $title = $this->title;
         if($this->save()){
             //var_dump($status);exit;
             if($status == '1'){
-                $this->sendSunscriptionMail();
+                $this->sendSunscriptionMail($uid,$title);
             }
             return true;
         }else{
@@ -87,14 +89,13 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasOne(ArticleWishlist::className(), ['article_id' => 'id']);
     }
 
-    public function sendSunscriptionMail() {
+    public function sendSunscriptionMail($id,$title) {
         $list = Subscription::find()->andWhere(['status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
         foreach ($list as $key => $value) {
             $email = $value['email'];
             $replyEmail ="info@healthbeautybank.com";
             $subject = "Healthbeautybank - New Post Added.";
-            $body = "New post added healthbeautybank.com/article";
-
+            $body = "New post added healthbeautybank.com/articleview/".$id."/".$title;
             Yii::$app->mailer->compose()
             ->setTo($email)
             ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])

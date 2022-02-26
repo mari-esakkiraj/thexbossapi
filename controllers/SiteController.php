@@ -18,6 +18,12 @@ use app\models\SubCategory;
 use app\models\ProductImages;
 use app\models\ProductWishlist;
 use app\models\ArticleWishlist;
+use app\models\ProductColor;
+use app\models\Tags;
+use app\models\AboutUs;
+use app\models\HomeBanner;
+use app\models\SeoUrl;
+use app\models\ProductSize;
 use app\models\Users;
 use app\modules\api\models\ApiLoginForm;
 use yii\web\ForbiddenHttpException;
@@ -238,28 +244,39 @@ class SiteController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $list = Category::find()->andWhere([ 'type' => 'Article'])->orderBy([ 'id' => SORT_DESC])->all();
         $data = [];
-        $i = 1;
+        $i = 0;
         $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
-        $data[0]['id'] = 0;
-        $data[0]['name'] = "All";
-        $data[0]['href'] = "#";
-        $data[0]['thumbnail'] = $fileNamePath;
-        $data[0]['count'] = 0;
-        $data[0]['color'] = "indigo";
-        $data[0]['type'] = "Article";
         foreach ($list as $key => $value) {
             $allPost = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
             if(count($allPost) > 0){
                 $fileNamePath =  Yii::$app->params['adminURL'].$allPost[0]['filename'];
             }
-            $data[$i]['id'] = $value['id'];
-            $data[$i]['name'] = $value['title'];
-            $data[$i]['href'] = "#";
-            $data[$i]['thumbnail'] = $fileNamePath;
-            $data[$i]['count'] = count($allPost);
-            $data[$i]['color'] = "indigo";
-            $data[$i]['type'] = $value['type'];
-            $i++;
+            $sublist = SubCategory::find()->andWhere(['category_id' => $value['id']])->all();
+            $subData = [];
+            if(count($sublist) > 0){
+                foreach ($sublist as $subkey => $subvalue) {
+                    $subData[$subkey]['id'] = $subvalue['id'];
+                    $subData[$subkey]['name'] = $subvalue['title'];
+                    $subData[$subkey]['categoryName'] = $value['title'];
+                    $subData[$subkey]['categoryId'] = $value['id'];
+                    $subData[$subkey]['href'] = "#";
+                    $subData[$subkey]['thumbnail'] = "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+                    $subData[$subkey]['color'] = "indigo";
+                }
+            }
+            if(count($allPost) > 0){
+                $data[$i]['id'] = $value['id'];
+                $data[$i]['name'] = $value['title'];
+                $data[$i]['href'] = "#";
+                $data[$i]['thumbnail'] = $fileNamePath;
+                $data[$i]['count'] = count($allPost);
+                $data[$i]['color'] = "indigo";
+                $data[$i]['type'] = $value['type'];
+                $data[$i]['subCateg'] = $subData;
+                $i++;
+            }
+            
+            
         }
         return $data;
     }
@@ -269,28 +286,38 @@ class SiteController extends Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $list = Category::find()->andWhere([ 'type' => 'Product'])->orderBy([ 'id' => SORT_DESC])->all();
         $data = [];
-        $i = 1;
+        $i = 0;
         $fileNamePath = 'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
-        $data[0]['id'] = 0;
-        $data[0]['name'] = "All";
-        $data[0]['href'] = "#";
-        $data[0]['thumbnail'] = $fileNamePath;
-        $data[0]['count'] = 0;
-        $data[0]['color'] = "indigo";
-        $data[0]['type'] = "Article";
         foreach ($list as $key => $value) {
             $allPost = Post::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
             if(count($allPost) > 0){
                 $fileNamePath =  Yii::$app->params['adminURL'].$allPost[0]['filename'];
             }
-            $data[$i]['id'] = $value['id'];
-            $data[$i]['name'] = $value['title'];
-            $data[$i]['href'] = "#";
-            $data[$i]['thumbnail'] = $fileNamePath;
-            $data[$i]['count'] = count($allPost);
-            $data[$i]['color'] = "indigo";
-            $data[$i]['type'] = $value['type'];
-            $i++;
+            $sublist = SubCategory::find()->andWhere(['category_id' => $value['id']])->all();
+            $subData = [];
+            if(count($sublist) > 0){
+                foreach ($sublist as $subkey => $subvalue) {
+                    $subData[$subkey]['id'] = $subvalue['id'];
+                    $subData[$subkey]['name'] = $subvalue['title'];
+                    $subData[$subkey]['categoryName'] = $value['title'];
+                    $subData[$subkey]['categoryId'] = $value['id'];
+                    $subData[$subkey]['href'] = "#";
+                    $subData[$subkey]['thumbnail'] = "https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+                    $subData[$subkey]['color'] = "indigo";
+                }
+            }
+            $allProduct = Product::find()->andWhere(['category_id' => $value['id'], 'status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+            if(count($allProduct) > 0){
+                $data[$i]['id'] = $value['id'];
+                $data[$i]['name'] = $value['title'];
+                $data[$i]['href'] = "#";
+                $data[$i]['thumbnail'] = $fileNamePath;
+                $data[$i]['count'] = count($allPost);
+                $data[$i]['color'] = "indigo";
+                $data[$i]['type'] = $value['type'];
+                $data[$i]['subCateg'] = $subData;
+                $i++;
+            }
         }
         return $data;
     }
@@ -392,16 +419,30 @@ class SiteController extends Controller
     { 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $list = Product::find()->joinWith(['category'])->orderBy([ 'id' => SORT_DESC, 'status' => '1'])->all();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $userId = '';
+        if(isset($params->userId)){
+            $userId = $params->userId;
+        }
         $data = [];
         $i = 1;
         foreach ($list as $key => $value) {
-            // var_dump($value->category); exit;
+            $productId = $value['id'];
+            $liked = false;
+            if($userId !== ''){
+                $wish = ProductWishlist::findOne(['product_id' => $productId, 'user_id' => $userId]);
+                if($wish){
+                    $liked = true;
+                }
+            }
+            $title = preg_replace('/\s+/', '', ucwords($value['title']));
             $data[$key]['index'] = $i;
             $data[$key]['id'] = $value['id'];
             $data[$key]['title'] = $value['title'];
             $data[$key]['desc'] = $value['desc'];
             $data[$key]['date'] = $value['createddate'];
-            $data[$key]['href'] = "productview/".$value['product_uuid'];
+            $data[$key]['href'] = "productview/".$value['product_uuid']."/".$title;
             $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
             $data[$key]['commentCount'] = 0;
             $data[$key]['viewdCount'] = 0;
@@ -409,13 +450,42 @@ class SiteController extends Controller
             $data[$key]['postType'] = "standard";
             $data[$key]['categoriesId'] = [$value['category_id']];
             $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
-            $data[$key]['like'] = ["count" => 0,"isLiked" => false];
+            $data[$key]['like'] = ["count" => 0,"isLiked" => $liked];
             $data[$key]['authorId'] = 1;
-            $data[$key]['categoryName'] = $value->category->title;
+            $data[$key]['categoryName'] = (isset($value->category->title) ? $value->category->title : '');
             $data[$key]['category'] = $value['category_id'];
             $data[$key]['subcategory'] = $value['sub_category_id'];
+            $data[$key]['uniqueId'] = $value['product_uuid'];
             $i++;
         }
+        return $data;
+    }
+
+    public function actionProductitems()
+    { 
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list1 = ProductSize::find()->all();
+        $list2 = ProductColor::find()->all();
+        $data = [
+            'status' => 'success'
+        ];
+        $i = 1;
+        $sizeData = [];
+        foreach ($list1 as $key => $value) {
+            $sizeData[$key]['index'] = $i;
+            $sizeData[$key]['id'] = $value['size_id'];
+            $sizeData[$key]['title'] = $value['size_title'];
+            $i++;
+        }
+        $colorData = [];
+        foreach ($list2 as $key => $value) {
+            $colorData[$key]['index'] = $i;
+            $colorData[$key]['id'] = $value['color_id'];
+            $colorData[$key]['title'] = $value['product_title'];
+            $i++;
+        }
+        $data['colorData'] = $colorData;
+        $data['sizeData'] = $sizeData;
         return $data;
     }
 
@@ -423,17 +493,32 @@ class SiteController extends Controller
     { 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $list = Post::find()->andWhere(['post.status' => 1])->joinWith(['category'])->orderBy([ 'id' => SORT_DESC])->all();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $userId = '';
+        if(isset($params->userId)){
+            $userId = $params->userId;
+        }
         $data = [];
         $i = 1;
         if(count($list) > 0){
             foreach ($list as $key => $value) {
                 // var_dump($value->category); exit;
+                $postId = $value['id'];
+                $liked = false;
+                if($userId !== ''){
+                    $wish = ArticleWishlist::findOne(['article_id' => $postId, 'user_id' => $userId]);
+                    if($wish){
+                        $liked = true;
+                    }
+                }
+                $title = preg_replace('/\s+/', '', ucwords($value['title']));
                 $data[$key]['index'] = $i;
                 $data[$key]['id'] = $value['id'];
                 $data[$key]['title'] = $value['title'];
                 $data[$key]['desc'] = $value['content'];
                 $data[$key]['date'] = $value['createddate'];
-                $data[$key]['href'] = "articleview/".$value['post_uuid'];
+                $data[$key]['href'] = "articleview/".$value['post_uuid']."/".$title;
                 $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
                 $data[$key]['commentCount'] = 0;
                 $data[$key]['viewdCount'] = 0;
@@ -441,9 +526,9 @@ class SiteController extends Controller
                 $data[$key]['postType'] = "standard";
                 $data[$key]['categoriesId'] = [$value['category_id']];
                 $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
-                $data[$key]['like'] = ["count" => 0,"isLiked" => false];
+                $data[$key]['like'] = ["count" => 0,"isLiked" => $liked];
                 $data[$key]['authorId'] = 1;
-                $data[$key]['categoryName'] = $value->category->title;
+                $data[$key]['categoryName'] = (isset($value->category->title) ? $value->category->title : '');
                 $data[$key]['category'] = $value['category_id'];
                 $data[$key]['subcategory'] = $value['sub_category_id'];
                 $data[$key]['uniqueId'] = $value['post_uuid'];
@@ -476,11 +561,12 @@ class SiteController extends Controller
                 $data[$key]['postType'] = "standard";
                 $data[$key]['categoriesId'] = [$value['category_id']];
                 $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
-                $data[$key]['like'] = ["count" => 0,"isLiked" => false];
+                $data[$key]['like'] = ["count" => 0,"isLiked" => true];
                 $data[$key]['authorId'] = 1;
                 $data[$key]['categoryName'] = $value->category->title;
                 $data[$key]['category'] = $value['category_id'];
                 $data[$key]['subcategory'] = $value['sub_category_id'];
+                $data[$key]['isProduct'] = false;
                 $i++;
             }
         }
@@ -491,16 +577,21 @@ class SiteController extends Controller
     public function actionProductwishlist()
     { 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $list = Product::find()->andWhere(['product.status' => 1,'product_wishlist.status' => 1])->joinWith(['category','productwish'])->orderBy([ 'id' => SORT_DESC])->all();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $userId = '';
+        if(isset($params->userId)){
+            $userId = $params->userId;
+        }
+        $list = Product::find()->andWhere(['product.status' => 1,'product_wishlist.status' => 1, 'user_id' => $userId])->joinWith(['category','productwish'])->orderBy([ 'id' => SORT_DESC])->all();
         $data = [];
         $i = 1;
         if(count($list) > 0){
             foreach ($list as $key => $value) {
-                // var_dump($value->category); exit;
                 $data[$key]['index'] = $i;
                 $data[$key]['id'] = $value['id'];
                 $data[$key]['title'] = $value['title'];
-                $data[$key]['desc'] = $value['content'];
+                $data[$key]['desc'] = $value['desc'];
                 $data[$key]['date'] = $value['createddate'];
                 $data[$key]['href'] = "#";
                 $data[$key]['featuredImage'] = Yii::$app->params['adminURL'].$value['filename'];
@@ -510,11 +601,13 @@ class SiteController extends Controller
                 $data[$key]['postType'] = "standard";
                 $data[$key]['categoriesId'] = [$value['category_id']];
                 $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
-                $data[$key]['like'] = ["count" => 0,"isLiked" => false];
+                $data[$key]['like'] = ["count" => 0,"isLiked" => true];
                 $data[$key]['authorId'] = 1;
                 $data[$key]['categoryName'] = $value->category->title;
                 $data[$key]['category'] = $value['category_id'];
                 $data[$key]['subcategory'] = $value['sub_category_id'];
+                $data[$key]['isProduct'] = true;
+                $data[$key]['productUrl'] = $value['url'] === NULL ? '' : $value['url'];
                 $i++;
             }
         }
@@ -545,10 +638,11 @@ class SiteController extends Controller
             $data[$key]['bookmark'] = ["count" => 0,"isBookmarked" => false];
             $data[$key]['like'] = ["count" => 0,"isLiked" => false];
             $data[$key]['authorId'] = 1;
-            $data[$key]['categoryName'] = $value->category->title;
+            $data[$key]['categoryName'] = (isset($value->category->title) ? $value->category->title : '');
             $data[$key]['category'] = $value['category_id'];
             $data[$key]['subcategory'] = $value['sub_category_id'];
             $data[$key]['status'] = ( $value['status'] == 1) ? 'Active' : "Draft";
+            $data[$key]['uniqueId'] = $value['post_uuid'];
             $i++;
         }
         return $data;
@@ -578,6 +672,29 @@ class SiteController extends Controller
         $contentNew = preg_replace('/<span[^>]+\>|<\/span>/i', '', $contentNew);
         $contentNew = preg_replace('/<div[^>]+\>|<\/div>/i', '', $contentNew);
         $contentNew = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $contentNew);
+        $taglist = Tags::find()->orderBy([ 'id' => SORT_DESC])->all();
+        $scriptList = [];
+        $scriptTagList = [];
+        foreach ($taglist as $key => $value) {
+            if (str_contains($content, $value['title'])) {
+                $script = "<div class='scriptInput'>".$value['script']."</div>";
+                $content = str_replace($value['title'], $script, $content);
+                $scriptList[$value['id']] = $value['script'];
+                $scriptTagList[$value['id']] = $value['script_tag'];
+            }
+            if (str_contains($contentNew, $value['title'])) {
+                $script = "<div class='scriptInput'>".$value['script']."</div>";
+                $contentNew = str_replace($value['title'], $script, $contentNew);
+                $scriptList[$value['id']] = $value['script'];
+                $scriptTagList[$value['id']] = $value['script_tag'];
+            }
+        }
+        $newamount = '';
+        if(!!$list->discount){
+            $count1 = $list->discount / 100;
+            $count2 = $count1 * $list->prize;
+            $newamount = number_format($count2, 0);
+        }
         $data['index'] = 1;
         $data['title'] = $list->title;
         $data['titleActive'] = $list->title_active == '1' ? true : false;
@@ -587,13 +704,15 @@ class SiteController extends Controller
         $data['quantityActive'] = $list->quantity_active == '1' ? true : false;
         $data['colorActive'] = $list->color_active == '1' ? true : false;
         $data['discountActive'] = $list->discount_active == '1' ? true : false;
-        $data['quantity'] = 1;
-        $data['desc'] = $content;
-        $data['desc'] = $content;
-        $data['desc'] = $content;
-        $data['desc'] = $content;
+        $data['quantity'] = $list->quantity;
+        $data['price'] = $list->prize;
+        $data['color'] = $list->color_id === NULL ? '' : $list->color_id;
+        $data['size'] = $list->size_id === NULL ? '' : $list->size_id;
+        $data['discount'] = $list->discount;
+        $data['discountAmount'] = $newamount;
+        $data['productUuid'] = $list->product_uuid;
         $data['descNew'] = $contentNew;
-        $data['price'] = '100';
+        $data['desc'] = $content;
         $data['date'] = "May 20, 2021";
         $data['id'] = $list->id;
         $data['href'] = "#";
@@ -609,6 +728,10 @@ class SiteController extends Controller
         $data['total'] = count($productList);
         $data['productUrl'] = $list->url === NULL ? '' : $list->url;
         $data['wishlist'] = $wishList;
+        $data['scriptList'] = $scriptList;
+        $data['scriptTagList'] = $scriptTagList;
+        $data['category'] = $list->category_id;
+        $data['subcategory'] = $list->sub_category_id;
         
         $imagesList = $list->images;
         $namewith = '';
@@ -639,9 +762,20 @@ class SiteController extends Controller
         $uid = $params->uid;
         $list = Post::findOne(['post_uuid' => $uid]);
         $content = $list->content;
-        $content = preg_replace('/<span[^>]+\>|<\/span>/i', '', $content);
+        //$content = preg_replace('/<span[^>]+\>|<\/span>/i', '', $content);
         $content = preg_replace('/<div[^>]+\>|<\/div>/i', '', $content);
-        $content = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content);
+        //$content = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content);
+        $taglist = Tags::find()->orderBy([ 'id' => SORT_DESC])->all();
+        $scriptList = [];
+        $scriptTagList = [];
+        foreach ($taglist as $key => $value) {
+            if (str_contains($content, $value['title'])) {
+                $script = "<div class='scriptInput'>".$value['script']."</div>";
+                $content = str_replace($value['title'], $script, $content);
+                $scriptList[$value['id']] = $value['script'];
+                $scriptTagList[$value['id']] = $value['script_tag'];
+            }
+        }
         $data['index'] = 1;
         $data['title'] = $list->title;
         $data['desc'] = $content;
@@ -660,6 +794,8 @@ class SiteController extends Controller
         $data['like'] = ["count" => 0,"isLiked" => false];
         $data['authorId'] = 1;
         $data['filePath'] = $list->filename;
+        $data['scriptList'] = $scriptList;
+        $data['scriptTagList'] = $scriptTagList;
             
         return $data;
     }
@@ -670,14 +806,15 @@ class SiteController extends Controller
         $headers = array("Content-Type:multipart/form-data");
         $model->attributes = Yii::$app->request->post();
         $target_dir = "postimages/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $filename = $_FILES["image"]["tmp_name"];
-        if($filename !== ''){
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-            $model->filename = $target_file;
+        if(isset($_FILES['image'])){
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $filename = $_FILES["image"]["tmp_name"];
+            if($filename !== ''){
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                $model->filename = $target_file;
+            }
         }
-        //var_dump($model->attributes);exit;
         if ($model->add()) {
             $user = Yii::$app->user->identity;
             $user['status'] = 'success';
@@ -696,12 +833,13 @@ class SiteController extends Controller
         $request = Yii::$app->request->post();
         $target_dir = "postimages/";
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $updatedFilename = '';
         if(isset($_FILES["image"])){
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
             $filename = $_FILES["image"]["tmp_name"];
             if($filename !== ''){
                 move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                $model->filename = $target_file;
+                $updatedFilename = $target_file;
             }
         }
         $id = $request['id'];
@@ -710,17 +848,78 @@ class SiteController extends Controller
         $sub_category_id = $request['sub_category_id'];
         $status = $request['status'];
         $content = $request['content'];
-        Yii::$app->db->createCommand("UPDATE post SET title=:title,category_id=:category_id,content=:content,status=:status,sub_category_id=:sub_category_id WHERE id=:id")
-        ->bindValue(':id', $id)
-        ->bindValue(':title', $title)
-        ->bindValue(':category_id', $category_id)
-        ->bindValue(':content', $content)
-        ->bindValue(':sub_category_id', $sub_category_id)
-        ->bindValue(':status', $status)
-        ->execute();
+        if($updatedFilename !== ''){
+            Yii::$app->db->createCommand("UPDATE post SET title=:title,category_id=:category_id,content=:content,status=:status,sub_category_id=:sub_category_id,filename=:filename WHERE id=:id")
+            ->bindValue(':id', $id)
+            ->bindValue(':title', $title)
+            ->bindValue(':category_id', $category_id)
+            ->bindValue(':content', $content)
+            ->bindValue(':sub_category_id', $sub_category_id)
+            ->bindValue(':status', $status)
+            ->bindValue(':filename', $updatedFilename)
+            ->execute();
+        }else{
+            Yii::$app->db->createCommand("UPDATE post SET title=:title,category_id=:category_id,content=:content,status=:status,sub_category_id=:sub_category_id WHERE id=:id")
+            ->bindValue(':id', $id)
+            ->bindValue(':title', $title)
+            ->bindValue(':category_id', $category_id)
+            ->bindValue(':content', $content)
+            ->bindValue(':sub_category_id', $sub_category_id)
+            ->bindValue(':status', $status)
+            ->execute();
+        }
         return [
             'status' => 'success'
         ];
+    }
+
+    public function actionUpdateproduct()
+    { 
+        $headers = array("Content-Type:multipart/form-data");
+        $request = Yii::$app->request->post();
+        $target_dir = "postimages/";
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $imagesList = [];
+        $model = Product::find()->where(['id' => $request['id']])->one(); 
+        $model->attributes = Yii::$app->request->post();
+        if(isset($_FILES['image'])){
+            foreach($_FILES['image']['name'] as $i => $name){
+                $filename = $_FILES['image']['tmp_name'][$i];
+                $target_file = $target_dir . basename($_FILES['image']['name'][$i]);
+                $error = $_FILES['image']['error'][$i];
+                $size = $_FILES['image']['size'][$i];
+                $type = $_FILES['image']['type'][$i];
+                if($filename !== ''){
+                    move_uploaded_file($filename, $target_file);
+                    array_push($imagesList, $target_file);
+                    $model->filename = $target_file;
+                }
+            }
+        }
+        
+        if($model === null)   
+            throw new NotFoundHttpException('The requested page does not exist.');
+        if($model->save()){  
+            if(count($imagesList) > 0){
+                Yii::$app->db->createCommand()->delete('product_images', ['product_id' => $request['id']])->execute();
+                foreach($imagesList as $i => $imagename){
+                    $modelImg = new ProductImages();
+                    $modelImg->product_id = $model->id;
+                    $modelImg->filename = $imagename;
+                    if ($modelImg->add()) {
+                    }
+                }
+            }   
+            return [
+                'status' => 'success'
+            ];
+        }else{
+            var_dump($model->getErrors());
+            return [
+                'status' => 'error'
+            ];
+        }
+        
     }
 
     public function actionAddproduct()
@@ -934,9 +1133,21 @@ class SiteController extends Controller
         Yii::$app->db->createCommand("UPDATE category SET status='0' WHERE id=:id")
         ->bindValue(':id', $params->id)
         ->execute();
+        $postList = Post::find()->where(['category_id' => $params->id])->all();
+        $productList = Product::find()->where(['category_id' => $params->id])->all();
+        foreach ($postList as $key => $value) {
+            Yii::$app->db->createCommand("UPDATE post SET category_id='' WHERE id=:id")
+            ->bindValue(':id', $value['id'])
+            ->execute();
+        }
+        foreach ($productList as $key => $value) {
+            Yii::$app->db->createCommand("UPDATE product SET category_id='' WHERE id=:id")
+            ->bindValue(':id', $value['id'])
+            ->execute();
+        }
         $result = [
             'status' => 'success',
-            'categoryList' => $this->actionCategory()
+            'categoryList' => []
         ];
         return $result;
     }
@@ -1019,9 +1230,21 @@ class SiteController extends Controller
         Yii::$app->db->createCommand("UPDATE sub_category SET status='0' WHERE id=:id")
         ->bindValue(':id', $params->id)
         ->execute();
+        $postList = Post::find()->where(['sub_category_id' => $params->id])->all();
+        $productList = Product::find()->where(['sub_category_id' => $params->id])->all();
+        foreach ($postList as $key => $value) {
+            Yii::$app->db->createCommand("UPDATE post SET sub_category_id='' WHERE id=:id")
+            ->bindValue(':id', $value['id'])
+            ->execute();
+        }
+        foreach ($productList as $key => $value) {
+            Yii::$app->db->createCommand("UPDATE product SET sub_category_id='' WHERE id=:id")
+            ->bindValue(':id', $value['id'])
+            ->execute();
+        }
         return [
             'status' => 'success',
-            'categoryList' => $this->actionSubcategory()
+            'categoryList' => []
         ];
         return $result;
     }
@@ -1081,5 +1304,178 @@ class SiteController extends Controller
                 'status' => 'error'
             ];
         }
+    }
+
+    public function actionAddtags()
+    { 
+        $model = new Tags();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if ($model->add()) {
+            return [
+                'status' => 'success'
+            ];
+        } else {
+            return [
+                'status' => 'error'
+            ];
+        }
+    }
+
+    public function actionTags()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = Tags::find()->andWhere(['status' => '1'])->orderBy([ 'id' => SORT_DESC])->all();
+        $data = [];
+        $i = 1;
+        foreach ($list as $key => $value) {
+            $data[$key]['id'] = $value['id'];
+            $data[$key]['title'] = $value['title'];
+            $data[$key]['script'] = $value['script'];
+            $data[$key]['script_tag'] = $value['script_tag'];
+            $i++;
+        }
+        return $data;
+    }
+
+    public function actionAddaboutus()
+    { 
+        $model = new AboutUs();
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $model->attributes = (array)$params;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if ($model->add()) {
+            return [
+                'status' => 'success'
+            ];
+        } else {
+            return [
+                'status' => 'error'
+            ];
+        }
+    }
+
+    public function actionDeletetags()
+    { 
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $id = $params->id;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $model = Tags::find()->where(['id' => $id])->one();
+        $result = [
+            'status' => 'error',
+            'id' => $id
+        ];
+        Yii::$app->db->createCommand("UPDATE tags SET status='0' WHERE id=:id")
+        ->bindValue(':id', $id)
+        ->execute();
+        $result = [
+            'status' => 'success',
+            'tagsList' => $this->actionTags()
+        ];
+        return $result;
+    }
+
+    public function actionAboutus()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = AboutUs::find()->andWhere(['id' => '1'])->orderBy([ 'id' => SORT_DESC])->one();
+        return $list->description;
+    }
+
+    public function actionUpdateaboutus()
+    { 
+        $model = new AboutUs();
+        $request = Yii::$app->request->post();
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $content = $request['content'];
+        Yii::$app->db->createCommand("UPDATE about_us SET description=:content WHERE id=:id")
+            ->bindValue(':id', 1)
+            ->bindValue(':content', $content)
+            ->execute();
+        return [
+            'status' => 'success'
+        ];
+    }
+
+    public function actionUpdatebanner()
+    { 
+        $model = new Post();
+        $headers = array("Content-Type:multipart/form-data");
+        $request = Yii::$app->request->post();
+        $target_dir = "postimages/";
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $updatedFilename = '';
+        if(isset($_FILES["image"])){
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $filename = $_FILES["image"]["tmp_name"];
+            if($filename !== ''){
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                $updatedFilename = $target_file;
+            }
+        }
+        
+        if($updatedFilename !== ''){
+            Yii::$app->db->createCommand("UPDATE home_banner SET filename=:filename WHERE id=:id")
+            ->bindValue(':filename', $updatedFilename)
+            ->bindValue(':id', 1)
+            ->execute();
+        }
+        
+        return [
+            'status' => 'success'
+        ];
+    }
+
+    public function actionGetbanner()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = HomeBanner::find()->andWhere(['id' => '1'])->orderBy([ 'id' => SORT_DESC])->one();
+        return Yii::$app->params['adminURL'].$list->filename;
+    }
+
+    public function actionAddseolist()
+    { 
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $title = $params->title;
+        $description = $params->description;
+        $url = $params->url;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->db->createCommand("UPDATE seo_url SET title=:title, description=:description WHERE url=:url")
+        ->bindValue(':title', $title)
+        ->bindValue(':description', $description)
+        ->bindValue(':url', $url)
+        ->execute();
+    }
+
+    public function actionSeolist()
+    { 
+        $request = Yii::$app->request;
+        $params = json_decode($request->getRawBody());
+        $url = $params->url;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $list = SeoUrl::find()->where(['url' => $url])->one();
+        $title = '';
+        $desc = '';
+        $id = '';
+        if(!$list && $url !== ''){
+            $model = new SeoUrl();
+            $model->url = $url;
+            $model->save();
+        }else{
+            $title = $list->title === NULL ? '' : $list->title;
+            $desc = $list->description === NULL ? '' : $list->description;
+        }
+
+        $data['index'] = 1;
+        $data['title'] = $title;
+        $data['desc'] = $desc;
+        $data['url'] = $url;
+        $data['id'] = $id;
+        return $data;
     }
 }
